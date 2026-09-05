@@ -1,0 +1,20 @@
+[project]
+name = "dbt-duckdb-pipeline"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Luke Barousse", email = "luke.barousse@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "dbt-core>=1.12.3",
+    "dbt-duckdb>=1.11.0",
+]
+
+[project.scripts]
+dbt-duckdb-pipeline = "dbt_duckdb_pipeline:main"
+
+[build-system]
+requires = ["uv_build>=0.12.9,<0.13.0"]
+build-backend = "uv_build"
