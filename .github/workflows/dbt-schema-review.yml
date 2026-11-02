@@ -21,11 +21,12 @@ jobs:
       - name: Install dbt dependencies
         run: uv sync --frozen
       - name: Prepare local inputs
-        run: uv run --no-sync python scripts/download_data.py
+        run: |
+          uv run --no-sync python scripts/download_data.py
       - name: Compare compiled model schemas
-        uses: PresentJay/dbt-plan@d98f06e8674a1e68a009112b90d0d00c41416c33 # v0.18.5
+        uses: PresentJay/dbt-plan@d98f06e8674a1e68a009112b90d0d00c41416c33 # v0.18.5 wrapper
         with:
           project-dir: analytics
-          compile-command: uv run --no-sync dbt compile --profiles-dir ../ci --no-partial-parse
-          version: '0.18.5'
+          compile-command: uv sync --frozen && uv run --no-sync dbt compile --profiles-dir ../ci --no-partial-parse
+          version: '0.18.6'
           fail-on: never
